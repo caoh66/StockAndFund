@@ -65,7 +65,7 @@ class Fund:
         df = self.tushare.fund_nav(ts_code=code)
         on_market_time = len(df.values)
         if on_market_time > self.on_market_time and self.check_is_valid_fund(df['adj_nav'].tolist()):
-            adj_nav = df['adj_nav'].tolist()
+            return df['adj_nav'].tolist()
         else:
             return unit_nav
 

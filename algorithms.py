@@ -9,9 +9,17 @@ import math
 
 
 def effective_net_values(net_values):
+    """
+    Args:
+        net_values: net values of fund as a list
+
+    return: effective net values of fund as a list
+    """
+    # sort by date
     net_values.reverse()
     effective_net_values_list = []
     effective_signal = 0
+    # Filter effective net values
     for i in range(len(net_values)):
         if net_values[i] != 1:
             effective_signal += 1
@@ -51,6 +59,14 @@ def max_draw_down(net_values, time_window):
 
 
 def annual_return(net_values):
+    """
+
+        Args:
+            net_values: net values of fund as a list
+
+        Returns: annual_return_rate
+
+        """
     annual_return_rate = (net_values[-1] / net_values[0]) ** (252 / len(net_values)) - 1
     return annual_return_rate
 
