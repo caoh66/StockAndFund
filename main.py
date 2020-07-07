@@ -9,7 +9,6 @@ import argparse
 import build_dataset
 import pickle
 import pandas as pd
-import numpy as np
 
 
 def build_result_dataframe(data, fund_type):
@@ -31,8 +30,7 @@ def build_result_dataframe(data, fund_type):
     data_dict = {"code": codes, "max_draw_down": max_draw_down, "annual_return_rates": annual_return_rates,
                  "annual_sharp_ratios": annual_sharp_ratios}
     df = pd.DataFrame(data=data_dict, columns=data_dict.keys())
-    df = df.replace(np.inf, 0)
-    df = df.sort_values(by='annual_sharp_ratios', ascending=False)
+    #df = df.sort_values(by='annual_sharp_ratios', ascending=False)
     return df
 
 
@@ -50,6 +48,7 @@ def main():
     type_list = ["股票型", "混合型", "债券型", "货币市场型"]
     for fund_type in type_list:
         df = build_result_dataframe(data, fund_type)
+        pd.set_option('display.max_columns',None)
         print(fund_type + '\n', df.head())
 
 

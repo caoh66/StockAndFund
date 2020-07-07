@@ -38,8 +38,8 @@ def calculate_return_rate(net_values):
 
     """
     return_rate = []
-    for i in range(len(net_values) - 1):
-        return_rate.append((net_values[i] - net_values[i + 1]) / net_values[i + 1])
+    for i in range(1, len(net_values)-1):
+        return_rate.append((net_values[i] - net_values[i - 1]) / net_values[i - 1])
 
     return return_rate
 
@@ -61,12 +61,12 @@ def max_draw_down(net_values, time_window):
 def annual_return(net_values):
     """
 
-        Args:
-            net_values: net values of fund as a list
+    Args:
+        net_values: net values of fund as a list
 
-        Returns: annual_return_rate
+    Returns: annual_return_rate
 
-        """
+    """
     annual_return_rate = (net_values[-1] / net_values[0]) ** (252 / len(net_values)) - 1
     return annual_return_rate
 
